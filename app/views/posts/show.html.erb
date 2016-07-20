@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @post.body %>
+</p>
+
+<p>
+  <strong>Comments</strong>
+  <br>
+  Add a comment:
+  <br>
+<%= form_for @comment, remote: true, url: post_comments_path(@post) do |f| %>
+	<div class="form-group">
+		<%= f.text_area :body, {id: "commentbox", style: "width: 40%"} %>
+	</div>
+	<%= f.submit "Add Comment", class: "btn btn-primary" %>
+<% end %>
+<br>
+
+<div id="comments" >
+  <% @comments.each do |c| %>
+		<%= "\"#{c.body}\"" %>
+	  <br>
+  <% end %>
+</div >
+
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

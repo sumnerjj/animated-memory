@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+<h1>Posts</h1>
+
+<%= link_to 'Create a new Post', new_post_path %>
+
+    <% @posts.each do |post| %>
+      <tr>
+	      <h3> <%= post[:post_record].title %> </h3> 
+			      <%= post[:post_record].body %>
+			      <br>
+			      Tags: <%= raw post[:post_record].tags.map(&:name).map { |t| link_to t, posts_path( tag: t) }.join(', ') %>
+		      <br>
+		      Recent comments:
+		      <br>
+			      <% post[:comments].each do |c| %>
+				      "<%= c.body %>"
+				      <br>
+			      <% end %>
+        <%= link_to 'Details', post[:post_record] %>
+        <% link_to 'Edit', edit_post_path(post[:post_record]) %>
+        <% link_to 'Destroy', post[:post_record], method: :delete, data: { confirm: 'Are you sure?' } %>
+      </tr>
+    <% end %>
+
+<br>
+
