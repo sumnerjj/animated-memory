@@ -25,6 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bootstrap-sass',       '3.2.0.0'
 gem 'faker',                '1.4.2'
+gem 'devise', ' 4.1.1'
 
 group :development do
 gem 'rspec-rails'
@@ -51,7 +52,6 @@ group :development, :test do
   gem 'spring'
 
 
-  gem 'devise', ' 4.1.1'
 
 end
 
