@@ -15,10 +15,10 @@ class ArticlesController < ApplicationController
 
     query = "( SELECT * from comments where id = -1 limit #{comment_limit} )"
     @articles.each do |p|
-	    query += " UNION ALL (SELECT * from comments where article_id = #{p.id} ORDER BY created_at DESC limit #{comment_limit} )"
+	    query += " UNION ALL (SELECT * from comments where commentable_id = #{p.id} and commentable_type = 'Article' ORDER BY created_at DESC limit #{comment_limit} )"
     end
     comments = Comment.find_by_sql query
-    @articlesdict = @articles.map{ |a| {article_record: a, comments: comments.select{|c| c.article_id == a.id} } }
+    @articlesdict = @articles.map{ |a| {article_record: a, comments: comments.select{|c| c.commentable_id == a.id} } }
   end
 
   # GET /articles/1

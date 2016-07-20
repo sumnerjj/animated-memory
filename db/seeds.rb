@@ -24,14 +24,14 @@ end
 
 Post.all.each do |p|
 	rand(0..8).times do |n|
-		User.find( rand(1..5) ).comments.create!(post_id: p.id,
+		User.find( rand(1..5) ).comments.create!(commentable: p,
 						 body: Faker::Lorem.sentence)
 	end
 end
 
 Article.all.each do |a|
 	rand(0..8).times do |n|
-		User.find( rand(1..5) ).comments.create!(article_id: a.id,
+		User.find( rand(1..5) ).comments.create!(commentable: a,
 						 body: Faker::Lorem.sentence)
 	end
 end

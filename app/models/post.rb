@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   belongs_to :user
-  has_many :comments
+  has_many :comments, as: :commentable
   default_scope { order("created_at DESC") }
   validates :title, presence: true, length: { minimum: 1, maximum: 50 }
   validates :body, presence: true, length: { minimum: 1 }

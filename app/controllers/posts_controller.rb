@@ -15,10 +15,10 @@ class PostsController < ApplicationController
     query = "( SELECT * from comments where id = -1 limit #{comment_limit} )"
     post_ids=[]
     posts.each do |p|
-	    query += " UNION ALL (SELECT * from comments where post_id = #{p.id} ORDER BY created_at DESC limit #{comment_limit} )"
+	    query += " UNION ALL (SELECT * from comments where commentable_id = #{p.id} and commentable_type = 'Post' ORDER BY created_at DESC limit #{comment_limit} )"
     end
     comments = Comment.find_by_sql query
-    @posts = posts.map{ |p| {post_record: p, comments: comments.select{|c| c.post_id == p.id} } }
+    @posts = posts.map{ |p| {post_record: p, comments: comments.select{|c| c.commentable_id == p.id} } }
 
   end
 
