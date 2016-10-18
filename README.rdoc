@@ -1,3 +1,5 @@
 == README
 
+A simple blog platform demo. Features tagging system for posts.
 
+https://animated-memory.herokuapp.com/
